@@ -1,0 +1,111 @@
+post_id,timestamp,author,text,source
+1,2026-09-01 08:30:00,tech_guru,"Just tested the new open-weights AI model and it is mindblowing! Truly a game changer for developers. #AI #Tech #Innovation 🚀",Twitter
+2,2026-09-01 09:15:00,rahul_k,"Silk Board traffic is completely jammed as usual. 2 hours to move 2 km! Dimag kharab ho gaya subah subah. #BangaloreTraffic #Traffic #Frustrated",Twitter
+3,2026-09-01 10:05:00,priya_m,"Ordered biryani from Meghana and honestly it was ekdam mast! Best comfort food ever. #Biryani #Foodie #Delicious ❤️",Instagram
+4,2026-09-01 11:20:00,rohit_v,"India played with incredible spirit today. What a thrilling last-over finish! Pure class from the skipper. #Cricket #IPL #Champion 🏏",Twitter
+5,2026-09-01 12:45:00,ananya_s,"Flight delayed by 4 hours without any notification. Ground staff has no clue and zero empathy. Horrible experience! #AirlineFail #Travel #Angry 😡",Twitter
+6,2026-09-01 14:10:00,vikram_r,"Received my package 3 days ahead of schedule. Amazon customer support was super helpful resolving the address typo. #Shopping #CustomerService #Happy",LinkedIn
+7,2026-09-01 15:30:00,neha_t,"Exam results are out! Worked all night for months and finally cleared with distinction. Cannot believe this moment! #Education #StudentLife #Success 🎉",Instagram
+8,2026-09-01 16:50:00,amit_p,"The latest thriller film had such a predictable plot and terrible pacing. Bilkul bakwas picture thi, totally wasted my money. #MovieReview #Entertainment #Boring",Twitter
+9,2026-09-01 18:00:00,sneha_d,"The new municipal flyover inaugurated today by the transport minister. Hope this eases daily rush hour. #Infrastructure #Politics #CityNews",Twitter
+10,2026-09-01 19:25:00,karan_j,"My internet connection has been down since yesterday. Raised 3 complaint tickets but no update yet. Customer care disconnects the call! #Broadband #CustomerService #Frustrated 😤",Twitter
+11,2026-09-02 08:10:00,deepak_n,"Morning jog in the city park. The fresh breeze and sunrise make everything feel peaceful. #MorningWalk #Fitness #Peace",Instagram
+12,2026-09-02 09:40:00,pooja_g,"Laptop screen went black right during my final presentation! Absolutely panic moment, hope the hard drive is safe. #TechFail #Panic #Fear 😨",Twitter
+13,2026-09-02 11:00:00,siddharth_m,"Tried the new street food corner near Indiranagar. The momos were crisp and the spicy chutney was lajawab! #StreetFood #Foodie #Bangalore",Instagram
+14,2026-09-02 12:30:00,tanvi_c,"Heartbroken to hear about the passing of our veteran professor. She inspired thousands of students. You will be dearly missed. #InMemoriam #Education #Sadness 😢",LinkedIn
+15,2026-09-02 14:00:00,arjun_b,"Delivery boy was caught in heavy rain but still delivered the medicines on time. Gave him a generous tip. Hats off to delivery warriors! #Swiggy #Delivery #Respect 👏",Twitter
+16,2026-09-02 15:45:00,divya_l,"Metro train stopped inside the dark tunnel for 20 minutes with AC off. People started suffocating. Truly terrifying experience! #Metro #Panic #SafetyAlert 😱",Twitter
+17,2026-09-02 17:15:00,manish_w,"Shocked by the sudden price hike announced in the budget today. Middle class is bearing the brunt again. #Budget #Economy #Politics",Twitter
+18,2026-09-02 18:40:00,rithika_e,"The concert was magical! The light show, acoustics, and live guitar solos were out of this world. What a night! #LiveMusic #Concert #Entertainment",Instagram
+19,2026-09-02 20:10:00,suresh_k,"Bought this refurbished phone after seeing reviews, but battery drains in 2 hours. Bilkul bekaar product hai, do not buy! #ProductReview #Shopping #Scam",Twitter
+20,2026-09-02 21:30:00,meera_y,"Python 3.14 features look very promising. The improved error tracebacks and performance boosts make development smoother. #Python #Coding #Tech",Twitter
+21,2026-09-03 08:20:00,alok_v,"Heavy rain overnight has flooded several low-lying roads. Waterlogging at main junction, avoid the highway route! #Traffic #Weather #RoadSafety",Twitter
+22,2026-09-03 09:55:00,harsh_m,"Food arrived cold and spilled all over the paper bag. Contacted Zomato support and they refused refund! Ghatiya service. #ZomatoFail #Food #Angry 😡",Twitter
+23,2026-09-03 11:15:00,zoya_f,"Exploring the scenic tea estates of Munnar. The misty hills look straight out of a painting! Incredible beauty. #Travel #IncredibleIndia #Nature",Instagram
+24,2026-09-03 12:40:00,kartik_s,"Unbelievable turnaround in the football derby! 3 goals scored in stoppage time, absolute madness! #Football #Comeback #Excitement ⚽",Twitter
+25,2026-09-03 14:20:00,nisha_p,"University syllabus has not been updated in 12 years. Still teaching outdated legacy frameworks. We need practical modern skills! #Education #Curriculum #Reform",LinkedIn
+26,2026-09-03 16:00:00,aditya_r,"The new smartwatch software update totally bricked the device. Won't even charge now. Pathetic quality control from a top brand! #TechSupport #Wearables #BadTech",Twitter
+27,2026-09-03 17:35:00,shreya_k,"Just watched the classic theatre play in town. The acting was nuanced and the dialogues touched every emotion. Shaandar performance! #Theatre #Art #Culture",Instagram
+28,2026-09-03 19:10:00,varun_t,"E-commerce return pickup agent refused to take the defective item without original bubble wrap. Totally unnecessary harassment. #CustomerService #ReturnPolicy",Twitter
+29,2026-09-03 20:45:00,pallavi_j,"Local municipal corporation launched a citizen feedback portal today. Let us see if grievances actually get addressed. #Governance #Politics #Civic",Twitter
+30,2026-09-03 22:00:00,chirag_b,"Filter coffee at Brahmin's Coffee Bar never disappoints. Warm sip on a rainy evening is pure bliss. #Coffee #BangaloreEats #Happiness ☕",Instagram
+31,2026-09-04 07:45:00,ankita_m,"Stuck in the airport security line for over an hour. Automated gates are not working and staff is moving at snail speed. #Airport #TravelDiaries #Frustrated",Twitter
+32,2026-09-04 09:10:00,tarun_c,"Company announced complete work from home flexibility! Couldn't be happier, no more 3 hours of daily commute stress. #WorkLifeBalance #TechCareers #RemoteWork",LinkedIn
+33,2026-09-04 10:35:00,sonia_r,"The road outside our school is completely broken with massive potholes. Children are tripping daily. Authorities please fix this! #RoadSafety #CivicIssue #Urgent",Twitter
+34,2026-09-04 12:00:00,ashwin_k,"Defending champions got knocked out in the quarter finals. Devastating loss for our squad, we deserved better. #Sports #Sadness #Cricket 💔",Twitter
+35,2026-09-04 13:25:00,radhika_v,"Binge watched the new investigative documentary on Netflix. Compelling narrative and eye-opening revelations. Must watch! #Documentary #Entertainment",Instagram
+36,2026-09-04 15:00:00,kunal_s,"Bank deducted twice for a single UPI transaction. Neither merchant received it nor is it refunded. Phir se wahi chakkar! #FinTech #BankingFail #UPI",Twitter
+37,2026-09-04 16:40:00,bhavna_p,"Attended the annual AI and Data Science summit. Inspiring keynotes on edge computing and open source machine learning. #MachineLearning #TechSummit #AI",LinkedIn
+38,2026-09-04 18:15:00,gaurav_l,"Ordered birthday cake for my sister and the bakery delivered a smashed mess 2 hours late. Ruined our celebration! Bohot ganda service. #FoodFail #Angry",Twitter
+39,2026-09-04 19:50:00,mona_j,"Golden hour at Gokarna beach. The waves, cool breeze, and silent horizon were therapeutic. #BeachVibes #Travel #Peace",Instagram
+40,2026-09-04 21:15:00,prateek_d,"New government scheme announced for subsidizing solar rooftop installations. Great green initiative for clean energy. #RenewableEnergy #Politics #GreenTech",Twitter
+41,2026-09-05 08:00:00,simran_k,"Morning cycling group completed 40km around the lake trail. Energized for the weekend! #Cycling #FitnessGoals #Active",Instagram
+42,2026-09-05 09:20:00,mohit_a,"Flight radar shows major storm brewing over the coast. All sea departures halted immediately. Praying for everyone's safety! #StormAlert #Fear #Safety",Twitter
+43,2026-09-05 10:45:00,tanmay_v,"Tried the new flagship mechanical keyboard. Key switches feel buttery smooth and typing speed increased noticeably. Zabardast gadget! #Tech #Keyboards #Setup",Twitter
+44,2026-09-05 12:10:00,nandini_r,"The customer support rep stayed on phone for 45 minutes till my lost luggage was tracked and delivered. Rare dedication! #CustomerService #Gratitude #Travel",Twitter
+45,2026-09-05 13:40:00,roshan_m,"Cab driver canceled after making me wait for 20 minutes in hot sun. App deducted cancellation fee from ME! Absolutely ridiculous scam. #RideHailing #UberFail #Angry 🤬",Twitter
+46,2026-09-05 15:05:00,kriti_s,"Finally defended my master's thesis on quantum computing algorithms! Tremendous journey full of hard work and sleepless nights. #Education #Research #Proud 🎓",LinkedIn
+47,2026-09-05 16:30:00,harish_b,"The remake song completely ruined the melody of the original 90s classic. Why do they even attempt this? Bilkul kharab banaya hai. #Music #BollywoodFail",Twitter
+48,2026-09-05 18:00:00,swati_n,"Bumper festival sale discounts turned out to be fake markups! Prices were inflated 50% yesterday just to show a 40% discount today. #Shopping #ConsumerAlert #Scam",Twitter
+49,2026-09-05 19:30:00,vivek_g,"Attended the book launch of the historical biography today. Thought-provoking conversation on ancient trade routes. #Literature #Books #Culture",Instagram
+50,2026-09-05 21:00:00,anupama_c,"Street food crawl in old Delhi: paranthe, jalebi, and rabri. Pure indulgence and happiness in every bite! #DelhiFood #StreetFood #FoodLover",Instagram
+51,2026-09-06 08:30:00,manoj_t,"Heavy fog in the northern sector causing 15 train cancellations. Thousands of passengers stranded on cold platforms without tea or shelter. #Railway #TravelFail #Sadness",Twitter
+52,2026-09-06 09:50:00,leela_k,"The new UI design in the banking app is so clean and intuitive. Finding statements now takes only 2 clicks. Great improvement! #UX #Design #FinTech",LinkedIn
+53,2026-09-06 11:20:00,dinesh_p,"Traffic police doing an exemplary job managing the crossroads during the signal breakdown. Salute to their hard work under hot sun! #TrafficPolice #CityHeroes",Twitter
+54,2026-09-06 12:45:00,shruti_s,"Lost my pet dog during Diwali fireworks. He got scared and ran away. Please if anyone spots a golden retriever in Sector 4, contact me! #LostPet #Heartbroken #Help 😭",Twitter
+55,2026-09-06 14:15:00,uday_m,"The new coding assistant saved me 3 hours of writing boilerplate SQL queries today. Productive weekend work! #Coding #Developers #AI",Twitter
+56,2026-09-06 15:40:00,anand_r,"Customer support ticket #84920 resolved within 10 minutes. Refund credited immediately to bank. Amazing service from the team! #CustomerService #FastSupport",Twitter
+57,2026-09-06 17:10:00,komal_g,"The restaurant charged 18% service charge on top of GST even after explicit refusal. Argument with the manager ruined dinner! Ghatiya log. #Food #DiningFail #Illegal",Twitter
+58,2026-09-06 18:35:00,jayant_s,"State election results show tight contest between incumbent and opposition. High voter turnout recorded across rural constituencies. #Election #Politics #Democracy",Twitter
+59,2026-09-06 20:00:00,richa_v,"Our college football team won the inter-university championship trophy after 8 long years! Proud of the boys! #Champions #Sports #Football 🏆",Instagram
+60,2026-09-06 21:30:00,nitin_b,"Air quality index crossed 450 today. Burning sensation in eyes and throat. We are choking in our own cities! #Pollution #HealthEmergency #Fear",Twitter
+61,2026-09-07 08:15:00,seema_d,"Completed my morning yoga session on the terrace. Feeling centered, calm, and ready to take on the busy week ahead. #Yoga #Wellness #Mindfulness",Instagram
+62,2026-09-07 09:35:00,aravind_n,"Stuck in the Outer Ring Road gridlock for 90 minutes. Ambulances are trapped in traffic too. Unacceptable infrastructure collapse! #BangaloreTraffic #TrafficJam 😤",Twitter
+63,2026-09-07 11:00:00,geeta_l,"Bought fresh handmade sourdough from the artisanal bakery down the lane. Crust is golden and crumb is light. Zabardast taste! #Baking #Foodie #Sourdough",Instagram
+64,2026-09-07 12:25:00,pankaj_k,"Smartphone screen cracked from a minor 1-foot drop despite having tempered glass. Poor build quality from manufacturer. #TechReview #PhoneBreak",Twitter
+65,2026-09-07 13:50:00,rupali_m,"Scored top percentile in the national competitive exam! Dreams do come true if you stay consistent and focused. #Education #Success #Blessed ❤️",LinkedIn
+66,2026-09-07 15:15:00,rajat_w,"The streaming service increased subscription prices by 30% while removing good movies. Unsubscribed right away! #Streaming #Entertainment #Boycott",Twitter
+67,2026-09-07 16:40:00,preeti_j,"Train was sparkling clean and arrived right on dot. Bio-toilets and onboard catering were impressive. Vande Bharat journey was smooth! #IndianRailways #Travel",Twitter
+68,2026-09-07 18:05:00,kavita_s,"Clothing order arrived in wrong size and wrong color. Return request was rejected citing 'final sale' clause. Total scam and cheating! #ShoppingFail #Fraud #Cheated 😡",Twitter
+69,2026-09-07 19:30:00,dev_p,"The open source community is unbelievable. Submitted a pull request and had it reviewed and merged within an hour. #OpenSource #GitHub #Tech",Twitter
+70,2026-09-07 21:00:00,smita_h,"The thriller season finale left everyone on a wild cliffhanger! Did NOT expect that twist at the end. Shocked and intrigued! #WebSeries #Entertainment #Shock 😲",Twitter
+71,2026-09-08 08:20:00,ashok_r,"Pothole on the bypass road caused a tire burst this morning. Narrowly avoided a major collision. When will the PWD department wake up? #AccidentRisk #RoadHazards #Fear",Twitter
+72,2026-09-08 09:45:00,tanya_k,"Homemade dal makhani simmering on slow flame for 6 hours. The smoky aroma is irresistible! Sunday cooking therapy. #HomeCooking #Food #IndianRecipes",Instagram
+73,2026-09-08 11:10:00,abhinav_s,"Our local cricket academy kids played against the district champions and won by 15 runs! Fantastic grit and teamwork. #GrassrootsCricket #Sports #Inspiration",Twitter
+74,2026-09-08 12:35:00,manasi_d,"Passport verification office had smooth token system. Completed biometric verification in under 15 minutes. Great governance! #PublicService #Efficiency",LinkedIn
+75,2026-09-08 14:00:00,chetan_v,"Broadband fiber wire was cut during underground cable work. Zero internet for entire colony on a workday. Super frustrating! #InternetDown #WorkFromHomeFail",Twitter
+76,2026-09-08 15:30:00,priyanka_b,"Visited the historic forts of Rajasthan. The intricate carvings and royalty architecture are awe-inspiring. #RajasthanTourism #Heritage #Travel",Instagram
+77,2026-09-08 17:00:00,sanjay_m,"Parliament passed the new data protection bill today with bipartisan consensus. Key milestones for digital privacy rights. #DataPrivacy #Politics #TechLaw",Twitter
+78,2026-09-08 18:25:00,lavanya_r,"Tried baking macarons for the first time and they cracked and deflated into flat biscuits. Total fail! Sad day for my baking ambitions. #BakingFail #Sadness 😢",Instagram
+79,2026-09-08 19:50:00,sameer_k,"The new noise-canceling headphones are pure bliss in noisy metro trains. Blocks all hum and chatter completely. Must buy! #Tech #Audio #Gadgets",Twitter
+80,2026-09-08 21:15:00,neelam_t,"Courier left my high-value laptop package outside the front gate in rain without calling or taking signature. Irresponsible delivery team! #DeliveryFail #CustomerService 😡",Twitter
+81,2026-09-09 08:05:00,akash_c,"Glorious morning trek to the mountain peak! Watching the sun rise above clouds was truly a spiritual moment. #Hiking #Travel #Gratitude",Instagram
+82,2026-09-09 09:30:00,jyoti_m,"The bus driver was speeding recklessly and rashly overtook trucks on blind turns. Passengers were screaming in sheer terror! #RoadSafety #RashDriving #Fear 😱",Twitter
+83,2026-09-09 10:55:00,parth_s,"Finished reading the biography of APJ Abdul Kalam. His perseverance and humility will forever inspire millions. #Inspirational #Books #Education",LinkedIn
+84,2026-09-09 12:20:00,ishita_k,"The pizza from the newly opened parlor had stale cheese and soggy crust. Bilkul bekaar taste, throw it away. #FoodReview #PizzaFail #BadFood",Twitter
+85,2026-09-09 13:45:00,raghav_g,"World cup qualifier match tonight! Tensions are high and supporters are filling the stadium. Let us bring the trophy home! #Football #WorldCup #Sports ⚽",Twitter
+86,2026-09-09 15:10:00,pallav_n,"Cloud service outage brought down our production database servers for 40 minutes. Massive revenue loss and unhappy clients. Nightmare day! #DevOps #CloudOutage #TechFail 😤",Twitter
+87,2026-09-09 16:35:00,vidya_j,"Found my lost gold bracelet at the gym reception desk. Honesty is still alive in this world. Thank you so much! #FaithInHumanity #Kindness #Happiness ❤️",Instagram
+88,2026-09-09 18:00:00,mayank_r,"City bus fare increased without any notice or upgrade in basic passenger facilities. Why burden the common commuter? #Civic #Politics #PublicTransport",Twitter
+89,2026-09-09 19:25:00,haripriya_s,"The stand-up comedy special had our entire family laughing till tears rolled down. Brilliant satire and delivery! Ekdam zabardast comedy show. #Comedy #Entertainment #Fun",Instagram
+90,2026-09-09 20:50:00,anirudh_t,"E-commerce seller delivered an empty box stuffed with shredded cardboard instead of the ordered graphics card. Definite fraud! Police complaint lodged. #Fraud #Scam #ShoppingFail 😡",Twitter
+91,2026-09-10 08:15:00,sunil_v,"Heavy water leak from overhead pipeline flooded our ground floor apartment. No municipal plumber available. Horrible mess! #CivicIssues #Flood #Frustrated",Twitter
+92,2026-09-10 09:40:00,vandana_k,"Attended an insightful workshop on prompt engineering and LLM agents. The future of software development is evolving rapidly. #AI #TechWorkshop #Innovation",LinkedIn
+93,2026-09-10 11:05:00,karthik_b,"Star tennis player fought through cramps and won the 5-set marathon match! What unyielding spirit and athletic greatness! #Tennis #Champion #Inspiration 🎾",Twitter
+94,2026-09-10 12:30:00,madhuri_p,"Traditional thali meal with 12 authentic dishes. Each curry had its unique spices and flavors. Bohot badiya lunch! #FoodLovers #Thali #AuthenticIndian",Instagram
+95,2026-09-10 13:55:00,girish_r,"Car break-in reported in our gated society parking lot. Multiple vehicles vandalized overnight. Serious security failure! #SecurityAlert #Crime #Fear 😨",Twitter
+96,2026-09-10 15:20:00,swetha_l,"Stood in line for 2 hours to get university marksheet signed. Clerk told me to come back next week because server is down. Typical government college hassle! #CollegeLife #Bureaucracy #Frustrated",Twitter
+97,2026-09-10 16:45:00,lokesh_c,"Electric vehicle charging station installed right in our residential block. Very convenient initiative for sustainable commute. #CleanEnergy #ElectricVehicles #Tech",LinkedIn
+98,2026-09-10 18:10:00,namrata_m,"Scored tickets to the musical play of the year! The costumes, live choir, and orchestra were breathtaking. #Musical #Art #Entertainment",Instagram
+99,2026-09-10 19:35:00,vijay_d,"Flight pilot announced emergency landing due to technical malfunction in starboard engine. Hands were shaking, thank God we landed safely! #EmergencyLanding #Terrified #Miracle 🙏",Twitter
+100,2026-09-10 21:00:00,prerna_s,"Ordered grocery delivery through instant commerce app and it arrived in 9 minutes with all fresh veggies. Super convenient service! #QuickCommerce #Grocery #Happy",Twitter
+101,2026-09-11 08:30:00,debashis_k,"Morning cycling along Marine Drive. Sea breeze and open roads are the best medicine before starting work. #Cycling #Mumbai #Fitness",Instagram
+102,2026-09-11 09:50:00,farhan_q,"This phone is not bad at all for its price. Camera clarity is solid and battery easily lasts full day. Accha deal mila! #TechReview #ValueForMoney",Twitter
+103,2026-09-11 11:15:00,payal_h,"The new policy is not helping small business owners, in fact it is making compliance much harder. Bohot pareshan hain log. #BusinessPolicy #Politics #Reform",LinkedIn
+104,2026-09-11 12:40:00,ronit_s,"Never felt this disappointed with a sports franchise. Zero effort from players on pitch today. Shameless defeat! #Sports #Cricket #Angry",Twitter
+105,2026-09-11 14:05:00,tanvi_k,"I am not angry, just deeply sad seeing how historical monuments are neglected and defaced with graffiti. Please respect heritage! #Heritage #PreserveHistory #Sadness 😢",Twitter
+106,2026-09-11 15:30:00,arun_m,"The newly launched open source code editor is remarkably lightweight and fast. Memory consumption is practically zero! Mast software hai. #Programming #OpenSource #Tech",Twitter
+107,2026-09-11 16:55:00,shilpa_r,"Customer support executive was not helpful at all. Kept repeating generic robotic replies without reading my query. Bakwas customer care! #CustomerServiceFail #Annoyed 😤",Twitter
+108,2026-09-11 18:20:00,harshita_n,"Unexpected bonus announcement from management today! Hard work really pays off. Celebrating with the entire engineering team tonight. #CorporateLife #Celebration #Joy 🎉",LinkedIn
+109,2026-09-11 19:45:00,vikas_p,"Severe earthquake tremors felt across northern districts. Buildings swayed for 15 seconds. Stepped outside safely, hoping everyone is fine! #Earthquake #Alert #StaySafe",Twitter
+110,2026-09-11 21:10:00,anand_c,"Watched the classic documentary on space exploration. Mind-boggling how far human curiosity and science have reached. Truly humbled! #Space #Astronomy #Science",Twitter

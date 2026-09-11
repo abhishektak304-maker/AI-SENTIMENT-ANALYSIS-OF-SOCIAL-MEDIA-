@@ -1,0 +1,11 @@
+# SocialPulse AI Sentiment and Topic Intelligence
+
+SocialPulse is an analytical dashboard for social media sentiment, emotion, topic, and trend intelligence.
+It analyzes text across English and Hinglish (code-mixed), handling negations, hashtags, slang, and emojis.
+
+## Core Capabilities
+- Sentiment Classification: Positive, Negative, Neutral with confidence scoring
+- Emotion Classification: Happiness, Anger, Sadness, Frustration, Fear, Surprise, Neutral
+- Topic Classification: Technology, Sports, Food, Travel, Education, Traffic, Entertainment, Shopping, Customer Service, Politics, Other
+- Temporal Analysis: Sentiment over time, volume aggregation, spike anomaly detection
+- Dataset Support: Bundled realistic sample data, validated CSV uploads, live stream simulation
