@@ -2,7 +2,7 @@
 
 A responsive, production-grade analytical dashboard for social media sentiment,
 emotion, topic, and trend analysis supporting English and Hinglish.
-Features comprehensive theme awareness (Dark & Light), collapsible sidebar,
+Features comprehensive theme awareness (Dark & Light), collapsible Control Center,
 responsive grids, and zero-overflow layout.
 """
 
@@ -46,7 +46,7 @@ from src.database import (
 # Application Page Configuration
 st.set_page_config(
     page_title="SocialPulse | Sentiment & Topic Intelligence",
-    page_icon="favicon.png" if os.path.exists("favicon.png") else "📊",
+    page_icon="favicon.png" if os.path.exists("favicon.png") else None,
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
@@ -82,7 +82,7 @@ if "rate_limiter" not in st.session_state:
 @st.cache_data
 def load_bundled_data() -> pd.DataFrame:
     """Check the SQLite database; if not present create and seed one, then load."""
-    init_ok, init_msg = init_db()
+    init_ok, _ = init_db()
     if init_ok:
         db_posts = get_all_posts()
         if not db_posts.empty:
@@ -122,7 +122,7 @@ SIMULATION_POSTS_POOL = [
 ]
 
 
-# Semantic Theme System
+# Semantic Theme System (Slate dark / clean light)
 is_dark = (st.session_state.theme == "Dark")
 
 THEME_VARS = {
@@ -183,10 +183,12 @@ t = THEME_VARS["dark"] if is_dark else THEME_VARS["light"]
 
 sidebar_css_display = "block" if st.session_state.sidebar_visible else "none"
 sidebar_css_width = "300px" if st.session_state.sidebar_visible else "0px"
+sidebar_margin_left = "0px" if st.session_state.sidebar_visible else "-340px"
 
+# Comprehensive, zero-overflow, responsive design system
 st.markdown(f"""
 <style>
-    /* Semantic CSS Variables */
+    /* Semantic CSS Design Tokens */
     :root {{
         --bg-primary: {t['bg_primary']};
         --bg-secondary: {t['bg_secondary']};
@@ -212,53 +214,80 @@ st.markdown(f"""
         --accent-red: {t['accent_red']};
     }}
 
-    /* Global Body and App Reset */
+    /* Global Body and Viewport Reset: Prevent unwanted horizontal scrolling */
     html, body, .stApp {{
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
         background-color: var(--bg-primary) !important;
         color: var(--text-primary) !important;
         overflow-x: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }}
+
+    *, *:before, *:after {{
+        box-sizing: inherit;
     }}
 
     /* Streamlit Main Header and Toolbar */
     header[data-testid="stHeader"] {{
         background-color: var(--bg-primary) !important;
+        border-bottom: 1px solid var(--border-color) !important;
+        height: 3rem !important;
+        z-index: 50 !important;
     }}
 
-    /* Centered Dashboard Container */
+    /* Centered Dashboard Container with responsive padding and fluid max-width */
     .main .block-container {{
         max-width: 1440px !important;
-        padding-top: 1.25rem !important;
+        padding-top: 1rem !important;
         padding-bottom: 2.5rem !important;
-        padding-left: clamp(1rem, 2.5vw, 2.5rem) !important;
-        padding-right: clamp(1rem, 2.5vw, 2.5rem) !important;
+        padding-left: clamp(0.75rem, 2vw, 2rem) !important;
+        padding-right: clamp(0.75rem, 2vw, 2rem) !important;
         margin: 0 auto !important;
         box-sizing: border-box !important;
-        transition: max-width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100% !important;
+        transition: padding 0.2s ease, max-width 0.2s ease;
     }}
 
-    /* Collapsible Sidebar Styling */
+    /* Collapsible Sidebar Styling with smooth CSS width transition */
     [data-testid="stSidebar"] {{
         background-color: var(--bg-secondary) !important;
         border-right: 1px solid var(--border-color) !important;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), margin-left 0.25s ease, opacity 0.2s ease !important;
         display: {sidebar_css_display} !important;
-        min-width: {sidebar_css_width} !important;
+        width: {sidebar_css_width} !important;
+        min-width: 0 !important;
         max-width: 320px !important;
+        margin-left: {sidebar_margin_left} !important;
+        overflow: hidden !important;
+        flex-shrink: 0 !important;
+        z-index: 100 !important;
     }}
     
     [data-testid="stSidebar"] > div:first-child {{
-        padding-top: 1.5rem !important;
-        padding-left: 1.25rem !important;
-        padding-right: 1.25rem !important;
+        padding-top: 1.25rem !important;
+        padding-left: 1.15rem !important;
+        padding-right: 1.15rem !important;
+        padding-bottom: 2rem !important;
         background-color: var(--bg-secondary) !important;
+        width: 300px !important;
+    }}
+
+    /* Native collapse button styling */
+    [data-testid="stSidebarCollapseButton"] button,
+    [data-testid="collapsedControl"] button {{
+        background-color: var(--button-bg) !important;
+        color: var(--button-text) !important;
+        border: 1px solid var(--button-border) !important;
+        border-radius: 4px !important;
     }}
 
     /* Hide default branding footer */
     footer {{visibility: hidden; display: none !important;}}
     #MainMenu {{visibility: visible;}}
 
-    /* Universal Theme-Aware Button Rules (Covers normal, hover, active, focus states) */
+    /* Theme-Aware Button Rules: strictly 4px radius, no pill buttons, no purple */
     button,
     .stButton > button,
     .stDownloadButton > button,
@@ -269,8 +298,6 @@ st.markdown(f"""
     button[data-testid="stBaseButton-primary"],
     button[data-testid="baseButton-secondary"],
     button[data-testid="baseButton-primary"],
-    [data-testid="stSidebarCollapseButton"] button,
-    [data-testid="collapsedControl"] button,
     .stFileUploader button,
     div[data-testid="stButton"] button {{
         background-color: var(--button-bg) !important;
@@ -278,8 +305,8 @@ st.markdown(f"""
         border: 1px solid var(--button-border) !important;
         border-radius: 4px !important;
         font-weight: 500 !important;
-        font-size: 0.875rem !important;
-        padding: 0.45rem 0.9rem !important;
+        font-size: 0.85rem !important;
+        padding: 0.42rem 0.85rem !important;
         box-shadow: none !important;
         white-space: nowrap !important;
         transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
@@ -309,19 +336,13 @@ st.markdown(f"""
         border-color: var(--button-hover-border) !important;
     }}
 
-    /* Focus & Active State: Prevents solid black buttons in Light Mode */
+    /* Focus & Active State: Prevents solid black buttons */
     button:focus,
     button:focus-visible,
     button:active,
     .stButton > button:focus,
     .stButton > button:focus-visible,
-    .stButton > button:active,
-    button[kind="secondary"]:focus,
-    button[kind="secondary"]:focus-visible,
-    button[kind="secondary"]:active,
-    button[data-testid="stBaseButton-secondary"]:focus,
-    button[data-testid="stBaseButton-secondary"]:focus-visible,
-    button[data-testid="stBaseButton-secondary"]:active {{
+    .stButton > button:active {{
         background-color: var(--button-hover) !important;
         color: var(--button-hover-text) !important;
         border-color: var(--button-focus-border) !important;
@@ -329,37 +350,67 @@ st.markdown(f"""
         box-shadow: 0 0 0 2px var(--button-focus-ring) !important;
     }}
 
-    /* Header Bar Layout */
-    .header-bar {{
+    /* Top Action Bar Layout */
+    .top-action-bar {{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        flex-wrap: wrap;
         gap: 12px;
-        padding-bottom: 1rem;
-        margin-bottom: 1.25rem;
+        padding-bottom: 0.75rem;
+        margin-bottom: 1rem;
         border-bottom: 1px solid var(--border-color);
+        width: 100%;
+        box-sizing: border-box;
     }}
+
     .header-title-box {{
         display: flex;
         flex-direction: column;
+        justify-content: center;
     }}
+
     .header-title {{
-        font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+        font-size: clamp(1.25rem, 2vw, 1.75rem);
         font-weight: 700;
         color: var(--text-primary);
         letter-spacing: -0.02em;
         margin: 0;
         line-height: 1.25;
     }}
+
     .header-subtitle {{
-        font-size: clamp(0.82rem, 1.1vw, 0.92rem);
+        font-size: clamp(0.80rem, 1vw, 0.90rem);
         color: var(--text-secondary);
-        margin-top: 4px;
+        margin-top: 3px;
         margin-bottom: 0;
+        line-height: 1.4;
     }}
 
-    /* Responsive KPI Grid: 5 cards Desktop, 2-3 Tablet, 1 Mobile */
+    /* Guarantee header buttons never collapse or overflow */
+    .header-btn-group {{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+    }}
+
+    .header-btn-group div[data-testid="stHorizontalBlock"] {{
+        gap: 8px !important;
+        flex-wrap: nowrap !important;
+    }}
+
+    .header-btn-group div[data-testid="column"] {{
+        min-width: 95px !important;
+        flex: 1 1 auto !important;
+    }}
+
+    .header-btn-group button {{
+        min-width: 90px !important;
+        width: 100% !important;
+        text-align: center !important;
+    }}
+
+    /* Responsive KPI Grid: 5 cards Desktop, 3-2 Tablet, 1 Mobile */
     .kpi-grid {{
         display: grid;
         grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -371,6 +422,7 @@ st.markdown(f"""
     @media (max-width: 1120px) {{
         .kpi-grid {{
             grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
         }}
     }}
     @media (max-width: 768px) {{
@@ -382,6 +434,7 @@ st.markdown(f"""
     @media (max-width: 500px) {{
         .kpi-grid {{
             grid-template-columns: 1fr;
+            gap: 8px;
         }}
     }}
 
@@ -390,20 +443,21 @@ st.markdown(f"""
         background-color: var(--bg-card);
         border: 1px solid var(--border-color);
         border-radius: 6px;
-        padding: 16px 18px;
+        padding: 16px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        min-height: 112px;
         height: 100%;
-        min-height: 110px;
         box-sizing: border-box;
-        transition: border-color 0.15s ease, transform 0.15s ease;
+        overflow: hidden;
+        transition: border-color 0.15s ease;
     }}
     .kpi-card:hover {{
         border-color: var(--accent-blue);
     }}
     .kpi-label {{
-        font-size: 0.78rem;
+        font-size: 0.76rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.05em;
@@ -413,7 +467,7 @@ st.markdown(f"""
         text-overflow: ellipsis;
     }}
     .kpi-value {{
-        font-size: clamp(1.4rem, 2vw, 1.85rem);
+        font-size: clamp(1.35rem, 1.8vw, 1.85rem);
         font-weight: 700;
         color: var(--text-primary);
         line-height: 1.2;
@@ -436,17 +490,21 @@ st.markdown(f"""
         border: 1px solid var(--border-color);
         border-radius: 6px;
         padding: 18px 20px;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
         box-sizing: border-box;
+        width: 100%;
         height: 100%;
         overflow: hidden;
     }}
     .chart-card-title {{
-        font-size: 1rem;
+        font-size: 0.98rem;
         font-weight: 600;
         color: var(--text-primary);
         margin-bottom: 12px;
         letter-spacing: -0.01em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }}
 
     /* Sidebar Section Divider and Headers */
@@ -456,19 +514,18 @@ st.markdown(f"""
         margin-top: 12px;
     }}
     .sidebar-section-title {{
-        font-size: 0.78rem;
+        font-size: 0.76rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.06em;
         color: var(--text-secondary);
         margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
     }}
 
     /* Responsive Segmented Navigation Bar */
-    .nav-wrapper {{
-        margin-bottom: 1.5rem;
-        width: 100%;
-    }}
     div[data-testid="stRadio"] > div[role="radiogroup"] {{
         display: flex;
         flex-wrap: wrap;
@@ -481,15 +538,15 @@ st.markdown(f"""
         box-sizing: border-box;
     }}
     div[data-testid="stRadio"] > div[role="radiogroup"] > label {{
-        flex: 1 1 auto;
+        flex: 1 1 160px;
         min-width: 140px;
         text-align: center;
         justify-content: center;
-        padding: 8px 14px !important;
+        padding: 8px 12px !important;
         margin: 0 !important;
         border-radius: 4px !important;
         cursor: pointer !important;
-        font-size: 0.875rem !important;
+        font-size: 0.86rem !important;
         font-weight: 500 !important;
         background-color: transparent !important;
         border: 1px solid transparent !important;
@@ -528,9 +585,11 @@ st.markdown(f"""
         color: var(--text-primary);
         padding: 12px 16px;
         border-radius: 4px;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
         font-size: 0.88rem;
         line-height: 1.5;
+        width: 100%;
+        box-sizing: border-box;
     }}
 
     /* Anomaly Spike Card */
@@ -542,6 +601,8 @@ st.markdown(f"""
         margin-bottom: 1.25rem;
         color: var(--text-primary);
         font-size: 0.88rem;
+        width: 100%;
+        box-sizing: border-box;
     }}
 
     /* Legal & Governance Container */
@@ -553,6 +614,8 @@ st.markdown(f"""
         color: var(--text-primary);
         font-size: 0.90rem;
         line-height: 1.65;
+        width: 100%;
+        box-sizing: border-box;
     }}
 
     /* Form inputs and text areas */
@@ -616,6 +679,18 @@ st.markdown(f"""
         border: 1px solid var(--border-color) !important;
         border-top: none !important;
     }}
+
+    /* Mobile Drawer breakpoint */
+    @media (max-width: 768px) {{
+        [data-testid="stSidebar"] {{
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            height: 100vh !important;
+            z-index: 9999 !important;
+            box-shadow: 0 0 25px rgba(0,0,0,0.5) !important;
+        }}
+    }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -624,27 +699,27 @@ st.markdown(f"""
 # SIDEBAR / CONTROL CENTER
 # ==========================================
 with st.sidebar:
-    # Sidebar Header with Controls
-    sb_h_col1, sb_h_col2 = st.columns([3, 1])
+    # Header: Title & Collapse Button
+    sb_h_col1, sb_h_col2 = st.columns([3, 1], vertical_alignment="center")
     with sb_h_col1:
-        st.markdown(f"<h3 style='margin:0; font-size:1.15rem; color: var(--text-primary);'>Control Center</h3>", unsafe_allow_html=True)
+        st.markdown("<h3 style='margin:0; font-size:1.15rem; color: var(--text-primary);'>Control Center</h3>", unsafe_allow_html=True)
     with sb_h_col2:
-        if st.button("✕", help="Minimize Control Center"):
+        if st.button("✕", help="Minimize Control Center", key="sidebar_close_btn"):
             st.session_state.sidebar_visible = False
             st.rerun()
 
-    st.caption("Configure dataset ingestion, live stream simulation, and display preferences.")
+    st.caption("Manage datasets, live stream simulation, and system preferences.")
 
-    # Section 1: Quick Actions (Theme, Reset, Settings)
-    st.markdown("<div class='sidebar-section'><div class='sidebar-section-title'>Preferences</div></div>", unsafe_allow_html=True)
-    act_col1, act_col2 = st.columns(2)
-    with act_col1:
+    # Section 1: Useful Sidebar Controls (Theme, Reset, Settings)
+    st.markdown("<div class='sidebar-section'><div class='sidebar-section-title'>Quick Actions</div></div>", unsafe_allow_html=True)
+    sb_action_c1, sb_action_c2 = st.columns(2, gap="small")
+    with sb_action_c1:
         theme_btn_label = "Switch to Light" if is_dark else "Switch to Dark"
-        if st.button(theme_btn_label, use_container_width=True, help="Toggle application theme"):
+        if st.button(theme_btn_label, use_container_width=True, help="Toggle Theme", key="sb_theme_toggle_btn"):
             st.session_state.theme = "Light" if is_dark else "Dark"
             st.rerun()
-    with act_col2:
-        if st.button("Reset All", use_container_width=True, help="Reset dataset and dashboard state"):
+    with sb_action_c2:
+        if st.button("Reset All", use_container_width=True, help="Reset dataset and dashboard state", key="sb_reset_dashboard_btn"):
             st.session_state.dataset = load_bundled_data()
             st.session_state.sim_active = False
             st.session_state.sim_last_post = None
@@ -654,11 +729,11 @@ with st.sidebar:
     # Section 2: Data Source
     st.markdown("<div class='sidebar-section'><div class='sidebar-section-title'>Data Source</div></div>", unsafe_allow_html=True)
     db_stats = get_db_stats()
-    st.caption(f"SQLite DB: **{db_stats['total_posts']} posts** ({db_stats['status']})")
+    st.caption(f"Active DB: **{db_stats['total_posts']} posts** ({db_stats['status']})")
 
     data_source_mode = st.radio(
         "Select Source",
-        options=["SQLite Database (socialpulse.db)", "Upload Custom CSV"],
+        options=["Bundled Dataset (SQLite)", "Upload Custom CSV"],
         index=0,
         label_visibility="collapsed"
     )
@@ -674,7 +749,7 @@ with st.sidebar:
             if not is_valid:
                 st.error(err_msg)
             else:
-                if st.button("Ingest & Store in Database", use_container_width=True):
+                if st.button("Ingest & Store in Database", use_container_width=True, key="ingest_csv_btn"):
                     with st.spinner("Analyzing CSV & storing in SQLite database..."):
                         analyzed = analyze_dataframe(parsed_df)
                         insert_posts_batch(analyzed)
@@ -682,28 +757,28 @@ with st.sidebar:
                         st.success(f"Stored {len(analyzed)} posts in SQLite database.")
                         st.rerun()
 
-    if st.button("Reload from SQLite Database", use_container_width=True):
-        st.session_state.dataset = get_all_posts()
+    if st.button("Reset to Default Sample Dataset", use_container_width=True, key="reload_db_btn"):
+        st.session_state.dataset = load_bundled_data()
         st.session_state.sim_last_post = None
-        st.success("Synchronized from SQLite database.")
+        st.success("Synchronized with bundled dataset.")
         st.rerun()
 
     # Section 3: Live Simulation
     st.markdown("<div class='sidebar-section'><div class='sidebar-section-title'>Live Simulation</div></div>", unsafe_allow_html=True)
-    sim_toggle = st.toggle("Enable Live Stream", value=st.session_state.sim_active)
+    sim_toggle = st.toggle("Enable Live Simulation", value=st.session_state.sim_active, key="live_sim_toggle")
     if sim_toggle != st.session_state.sim_active:
         st.session_state.sim_active = sim_toggle
         st.rerun()
 
-    sim_speed = st.slider("Stream Interval (seconds)", min_value=2, max_value=10, value=3)
+    sim_speed = st.slider("Simulation Interval (seconds)", min_value=2, max_value=10, value=3, key="sim_speed_slider")
 
-    # Section 4: Documentation & Compliance Shortcut
-    st.markdown("<div class='sidebar-section'><div class='sidebar-section-title'>Governance</div></div>", unsafe_allow_html=True)
-    if st.button("View Policies & Terms", use_container_width=True):
+    # Section 4: Documentation & Legal Shortcut
+    st.markdown("<div class='sidebar-section'><div class='sidebar-section-title'>Documentation & Legal</div></div>", unsafe_allow_html=True)
+    if st.button("Privacy Policy & Terms", use_container_width=True, key="sb_legal_nav_btn"):
         st.session_state.current_view = "Compliance & Policies"
         st.rerun()
 
-    # Optional Settings Expander
+    # Section 5: Optional Settings Expander
     with st.expander("System Settings", expanded=False):
         st.write(f"**Theme:** {st.session_state.theme}")
         st.write(f"**Database:** {db_stats['path']}")
@@ -712,7 +787,7 @@ with st.sidebar:
         st.write(f"**Stored Posts:** {db_stats['total_posts']}")
         st.write(f"**Active Session Posts:** {len(st.session_state.dataset)}")
         st.write(f"**Rate Limit Remaining:** {st.session_state.rate_limiter.max_requests - len(st.session_state.rate_limiter.timestamps)}")
-        if st.button("Reset & Re-seed Database", use_container_width=True, help="Re-initializes SQLite database with default posts"):
+        if st.button("Re-seed Database", use_container_width=True, help="Re-initializes SQLite database with default posts", key="sb_reseed_db_btn"):
             ok, msg = reset_db()
             if ok:
                 st.session_state.dataset = get_all_posts()
@@ -723,29 +798,32 @@ with st.sidebar:
 
 
 # ==========================================
-# TOP HEADER & CONTROL TOGGLE
+# TOP HEADER & CONTROL TOGGLE BAR
 # ==========================================
-h_col1, h_col2 = st.columns([3.5, 2])
-with h_col1:
+header_col1, header_col2 = st.columns([3.2, 1.3], vertical_alignment="center")
+
+with header_col1:
     st.markdown("""
     <div class="header-title-box">
-        <h1 class="header-title">SocialPulse: AI Sentiment & Topic Intelligence</h1>
-        <p class="header-subtitle">Understand what people are saying, how they feel, and what is trending.</p>
+        <h1 class="header-title">SocialPulse: AI Sentiment &amp; Topic Intelligence</h1>
+        <p class="header-subtitle">Real-time sentiment, emotion, and topic intelligence across social posts.</p>
     </div>
     """, unsafe_allow_html=True)
 
-with h_col2:
-    btn_col1, btn_col2 = st.columns(2)
-    with btn_col1:
+with header_col2:
+    st.markdown("<div class='header-btn-group'>", unsafe_allow_html=True)
+    h_btn1, h_btn2 = st.columns(2, gap="small")
+    with h_btn1:
         toggle_label = "☰ Controls" if not st.session_state.sidebar_visible else "✕ Controls"
-        if st.button(toggle_label, use_container_width=True, help="Toggle Control Center"):
+        if st.button(toggle_label, use_container_width=True, key="top_sidebar_toggle_btn", help="Collapse or expand the Control Center sidebar"):
             st.session_state.sidebar_visible = not st.session_state.sidebar_visible
             st.rerun()
-    with btn_col2:
-        top_theme_label = "Theme: Dark" if is_dark else "Theme: Light"
-        if st.button(top_theme_label, use_container_width=True, help="Toggle Dark/Light Mode"):
+    with h_btn2:
+        top_theme_label = "Dark" if is_dark else "Light"
+        if st.button(top_theme_label, use_container_width=True, key="top_theme_toggle_btn", help="Switch Dark / Light theme"):
             st.session_state.theme = "Light" if is_dark else "Dark"
             st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
 # ==========================================
@@ -758,7 +836,7 @@ if st.session_state.sim_active:
         'This is a synthetic demonstration, not an external API stream.</div>',
         unsafe_allow_html=True
     )
-    
+
     # Process simulated post
     allowed, limit_msg = st.session_state.rate_limiter.allow_request()
     if allowed:
@@ -820,7 +898,7 @@ if selected_view != st.session_state.current_view:
     st.session_state.current_view = selected_view
     st.rerun()
 
-st.markdown("<div style='height: 12px;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
 
 
 # ==========================================
@@ -828,7 +906,7 @@ st.markdown("<div style='height: 12px;'></div>", unsafe_allow_html=True)
 # ==========================================
 if st.session_state.current_view == "Analytics Overview":
 
-    # 1. Responsive KPI Grid
+    # 1. Responsive KPI Grid: 5 cards Desktop, 3-2 Tablet, 1 Mobile
     st.markdown(f"""
     <div class="kpi-grid">
         <div class="kpi-card">
@@ -868,8 +946,8 @@ if st.session_state.current_view == "Analytics Overview":
             </div>
             """, unsafe_allow_html=True)
 
-    # 3. Charts Row 1: Sentiment Donut & Emotion Breakdown
-    row1_col1, row1_col2 = st.columns([1, 1.25], gap="medium")
+    # 3. Charts Row 1: Sentiment Share & Emotion Breakdown (aligned side-by-side)
+    row1_col1, row1_col2 = st.columns([1, 1], gap="medium")
 
     with row1_col1:
         st.markdown("<div class='chart-card'><div class='chart-card-title'>Sentiment Distribution</div>", unsafe_allow_html=True)
@@ -890,13 +968,14 @@ if st.session_state.current_view == "Analytics Overview":
             }
         )
         fig_donut.update_layout(
-            height=320,
+            height=330,
             margin=dict(l=15, r=15, t=15, b=25),
             showlegend=True,
             legend=dict(orientation="h", yanchor="bottom", y=-0.22, xanchor="center", x=0.5),
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
-            font=dict(color=t["plot_font"])
+            font=dict(color=t["plot_font"]),
+            autosize=True
         )
         st.plotly_chart(fig_donut, use_container_width=True)
         st.markdown("</div>", unsafe_allow_html=True)
@@ -920,14 +999,15 @@ if st.session_state.current_view == "Analytics Overview":
             text="Count"
         )
         fig_emo.update_layout(
-            height=320,
+            height=330,
             margin=dict(l=15, r=15, t=15, b=25),
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
             font=dict(color=t["plot_font"]),
             xaxis=dict(showgrid=False),
             yaxis=dict(showgrid=True, gridcolor=t["plot_grid"]),
-            showlegend=False
+            showlegend=False,
+            autosize=True
         )
         st.plotly_chart(fig_emo, use_container_width=True)
         st.markdown("</div>", unsafe_allow_html=True)
@@ -959,7 +1039,8 @@ if st.session_state.current_view == "Analytics Overview":
             font=dict(color=t["plot_font"]),
             xaxis=dict(showgrid=False),
             yaxis=dict(showgrid=True, gridcolor=t["plot_grid"], title="Post Count"),
-            legend=dict(orientation="h", yanchor="bottom", y=-0.3, xanchor="center", x=0.5)
+            legend=dict(orientation="h", yanchor="bottom", y=-0.3, xanchor="center", x=0.5),
+            autosize=True
         )
         st.plotly_chart(fig_time, use_container_width=True)
     else:
@@ -986,7 +1067,8 @@ if st.session_state.current_view == "Analytics Overview":
             margin=dict(l=15, r=15, t=15, b=20),
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
-            font=dict(color=t["plot_font"])
+            font=dict(color=t["plot_font"]),
+            autosize=True
         )
         st.plotly_chart(fig_topic, use_container_width=True)
         st.markdown("</div>", unsafe_allow_html=True)
@@ -1011,7 +1093,8 @@ if st.session_state.current_view == "Analytics Overview":
                     margin=dict(l=10, r=10, t=10, b=15),
                     paper_bgcolor="rgba(0,0,0,0)",
                     plot_bgcolor="rgba(0,0,0,0)",
-                    font=dict(color=t["plot_font"])
+                    font=dict(color=t["plot_font"]),
+                    autosize=True
                 )
                 st.plotly_chart(fig_kw, use_container_width=True)
             else:
@@ -1034,7 +1117,8 @@ if st.session_state.current_view == "Analytics Overview":
                     margin=dict(l=10, r=10, t=10, b=15),
                     paper_bgcolor="rgba(0,0,0,0)",
                     plot_bgcolor="rgba(0,0,0,0)",
-                    font=dict(color=t["plot_font"])
+                    font=dict(color=t["plot_font"]),
+                    autosize=True
                 )
                 st.plotly_chart(fig_ht, use_container_width=True)
             else:
@@ -1051,17 +1135,17 @@ elif st.session_state.current_view == "Post Explorer":
     st.caption("Search, filter, and inspect processed social posts with classification confidence.")
 
     # Responsive Filter Row
-    f_col1, f_col2, f_col3, f_col4 = st.columns([1, 1, 1, 1.5])
+    f_col1, f_col2, f_col3, f_col4 = st.columns([1, 1, 1, 1.5], gap="small")
     with f_col1:
-        sent_filter = st.multiselect("Sentiment", options=["Positive", "Negative", "Neutral"], default=[])
+        sent_filter = st.multiselect("Sentiment", options=["Positive", "Negative", "Neutral"], default=[], key="pe_sent_filter")
     with f_col2:
         all_emos = sorted(df_current["emotion"].unique().tolist())
-        emo_filter = st.multiselect("Emotion", options=all_emos, default=[])
+        emo_filter = st.multiselect("Emotion", options=all_emos, default=[], key="pe_emo_filter")
     with f_col3:
         all_tops = sorted(df_current["topic"].unique().tolist())
-        top_filter = st.multiselect("Topic", options=all_tops, default=[])
+        top_filter = st.multiselect("Topic", options=all_tops, default=[], key="pe_top_filter")
     with f_col4:
-        search_query = st.text_input("Text Search", value="", placeholder="Search text or username...")
+        search_query = st.text_input("Text Search", value="", placeholder="Search text or author...", key="pe_search_query")
 
     filtered_df = df_current.copy()
     if sent_filter:
@@ -1110,7 +1194,8 @@ elif st.session_state.current_view == "Post Explorer":
         label="Download Filtered Results as CSV",
         data=csv_bytes,
         file_name="socialpulse_filtered_posts.csv",
-        mime="text/csv"
+        mime="text/csv",
+        key="pe_download_csv_btn"
     )
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -1127,10 +1212,11 @@ elif st.session_state.current_view == "Single Post Analyzer":
         "Enter Post Content",
         height=110,
         placeholder="Type here... e.g., Silk board traffic was completely jammed today! Bilkul bekaar experience. #BangaloreTraffic",
-        max_chars=500
+        max_chars=500,
+        key="single_post_input_area"
     )
 
-    analyze_btn = st.button("Run Analysis", help="Execute complete NLP pipeline on input post")
+    analyze_btn = st.button("Run Analysis", help="Execute complete NLP pipeline on input post", key="run_single_analysis_btn")
 
     if analyze_btn and input_text:
         sanitized = sanitize_input_text(input_text)
@@ -1139,7 +1225,7 @@ elif st.session_state.current_view == "Single Post Analyzer":
         st.markdown("<div style='height: 14px;'></div>", unsafe_allow_html=True)
         st.markdown("<h4 style='color: var(--text-primary); margin-bottom: 12px;'>Analysis Results</h4>", unsafe_allow_html=True)
 
-        res_col1, res_col2, res_col3, res_col4 = st.columns(4)
+        res_col1, res_col2, res_col3, res_col4 = st.columns(4, gap="small")
         with res_col1:
             st.metric("Sentiment", result["sentiment"], delta=f"Conf: {result['sentiment_confidence']}")
         with res_col2:
@@ -1163,11 +1249,11 @@ elif st.session_state.current_view == "Single Post Analyzer":
 elif st.session_state.current_view == "Compliance & Policies":
     st.markdown("""
     <div class="legal-box">
-        <h3 style="margin-top: 0; font-size: 1.25rem; color: var(--text-primary);">Platform Governance, Privacy Policy & Terms</h3>
+        <h3 style="margin-top: 0; font-size: 1.25rem; color: var(--text-primary);">Platform Governance, Privacy Policy &amp; Terms</h3>
         <p style="color: var(--text-secondary);"><strong>Effective Date:</strong> September 11, 2026</p>
         <hr style="border-color: var(--border-color); margin: 16px 0;">
         <h4 style="font-size: 1.05rem; color: var(--text-primary);">1. Privacy Policy</h4>
-        <p style="color: var(--text-secondary);">SocialPulse is designed as an in-memory analytics platform prioritizing data protection:</p>
+        <p style="color: var(--text-secondary);">SocialPulse is designed as an analytics platform prioritizing data protection:</p>
         <ul style="color: var(--text-secondary);">
             <li><strong>In-Memory Processing:</strong> All user-uploaded CSV files and interactive text tests are held exclusively in temporary memory during the active session. No user posts or extracted metrics are persisted or transmitted to third-party tracking services.</li>
             <li><strong>Input Sanitization:</strong> Strict input validation enforces file size thresholds (5MB maximum) and strips script injection vectors.</li>
